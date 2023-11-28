@@ -1,10 +1,7 @@
-# Burn Book tutorial
+# Web5 Chat App Turotial
 
-Let's create a digital burn book that actually puts privacy first.
+Let's create a digital chat boxthat actually puts privacy first.
 
-🚀 **Your mission**
-
-Build [a Web5 Burn Book](https://burn-book-mean-girls.vercel.app/), based on Mean Girls, but this one is actual private.
 
 🛠️ **Your toolkit**
 
@@ -28,7 +25,7 @@ npm install
 npm run dev
 ```
 
-[![Edit galaxy-bytes/starter-burn-book-mean-girls/main](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/p/github/galaxy-bytes/starter-burn-book-mean-girls/main?import=true&embed=1&file=%2FREADME.md)
+<!-- [![Edit galaxy-bytes/starter-burn-book-mean-girls/main](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/p/github/galaxy-bytes/starter-burn-book-mean-girls/main?import=true&embed=1&file=%2FREADME.md) -->
 
 
 
@@ -58,7 +55,7 @@ setMyDid(did);
 Learn more about [DID authentication](https://developer.tbd.website/blog/did-authentication).
 
 ## Level 3: Define our protocol
-### 📝 Task
+<!-- ### 📝 Task
 Locate the line:
 ```javascript
 console.log('this is where we define our protocol')
@@ -95,7 +92,7 @@ And replace it with the following code snippet:
         },
       },
     };
-```
+``` -->
 ### 🧩 Breaking it down
 - **protocolDefinition:** This object defines the protocol, its structure, and it grants permissions outlining who can perform specific actions like reading or writing a ding.
 
@@ -103,7 +100,7 @@ And replace it with the following code snippet:
 - Learn more about [protocols](https://developer.tbd.website/docs/web5/learn/protocols/).
 
 ## Level 4: Query and install
-Locate this line:
+<!-- Locate this line:
 ```js
     console.log('this is in query local protocol')
 ```
@@ -162,12 +159,12 @@ Replace:
       },
     });
     return await protocol.send(did);
-```
+``` -->
 
 
 ## Level 5: Configure our protocol
 
-### 📝 Task
+<!-- ### 📝 Task
 Locate the line:
 ```javascript
  console.log('this is where we configure our protocol')
@@ -191,10 +188,10 @@ And replace it with the following code snippet:
       console.log({ result })
       console.log("Protocol installed remotely");
     }
-```
+``` -->
 
 ## Level 6: Writing the messages
-Locate the line:
+<!-- Locate the line:
 ```js
 console.log('this is where we Write the secret message')
 ```
@@ -273,7 +270,7 @@ try {
     } catch (error) {
       console.error('Error writing direct message to DWN', error);
     }
-```
+``` -->
 
 ## Level 7: Take a look at the handle Submit and construct Direct Message methods
 
