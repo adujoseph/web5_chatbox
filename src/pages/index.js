@@ -83,17 +83,93 @@ export default function Home() {
   };
 
   const constructDirectMessage = (recipientDid) => {
+    const currentDate = new Date().toLocaleDateString();
+    const currentTime = new Date().toLocaleTimeString();
 
+    return {
+      text: message, 
+      timestamp: `${currentDate} ${currentTime}`,
+      sender: myDid, 
+      type: 'Direct', 
+      recipientDid: recipientDid,
+      imageUrl: imageUrl, 
+    };
   };
 
   const constructSecretMessage = () => {
+    const currentDate = new Date().toLocaleDateString();
+    const currentTime = new Date().toLocaleTimeString();
 
+    return {
+      text: message, 
+      timestamp: `${currentDate} ${currentTime}`,
+      sender: myDid, 
+      type: 'Secret',
+      imageUrl: imageUrl, 
+    };
   };
 
   const fetchUserMessages = async () => {
+    try {
+      const response = await web5.dwn.records.query({
+        from: myDid,
+        message: {
+          filter: {
+            protocol: "https://blackcodematters.hashnode.dev/the-web5-journey-getting-started",
+            schema: "https://example.com/directMessageSchema",
+          },
+        },
+      });
+
+      if (response.status.code === 200) {
+        const userMessages = await Promise.all(
+          response.records.map(async (record) => {
+            const data = await record.data.json();
+            return {
+              ...data, 
+              recordId: record.id 
+            };
+          })
+        );
+        return userMessages
+      } else {
+        console.error('Error fetching sent messages:', response.status);
+        return [];
+      }
+
+    } catch (error) {
+      console.error('Error in fetchSentMessages:', error);
+    }
   };
 
   const fetchDirectMessages = async () => {
+    try {
+      const response = await web5.dwn.records.query({
+        message: {
+          filter: {
+            protocol: "https://blackcodematters.hashnode.dev/the-web5-journey-getting-started",
+          },
+        },
+      });
+
+      if (response.status.code === 200) {
+        const directMessages = await Promise.all(
+          response.records.map(async (record) => {
+            const data = await record.data.json();
+            return {
+              ...data, 
+              recordId: record.id 
+            };
+          })
+        );
+        return directMessages
+      } else {
+        console.error('Error fetching sent messages:', response.status);
+        return [];
+      }
+    } catch (error) {
+      console.error('Error in fetchReceivedDirectMessages:', error);
+    }
   };
 
   const fetchMessages = async () => {
@@ -105,9 +181,45 @@ export default function Home() {
 
 
   const handleCopyDid = async () => {
+    if (myDid) {
+      try {
+        await navigator.clipboard.writeText(myDid);
+        setDidCopied(true);
+        setTimeout(() => {
+          setDidCopied(false);
+        }, 3000);
+      } catch (err) {
+        console.error("Failed to copy DID: " + err);
+      }
+    }
   };
 
   const deleteMessage = async (recordId) => {
+    try {
+      const response = await web5.dwn.records.query({
+        message: {
+          filter: {
+            recordId: recordId,
+          },
+        },
+      });
+
+      if (response.records && response.records.length > 0) {
+        const record = response.records[0];
+        const deleteResult = await record.delete();
+
+        if (deleteResult.status.code === 202) {
+          console.log('Message deleted successfully');
+          setMessages(prevMessages => prevMessages.filter(message => message.recordId !== recordId));
+        } else {
+          console.error('Error deleting message:', deleteResult.status);
+        }
+      } else {
+        console.error('No record found with the specified ID');
+      }
+    } catch (error) {
+      console.error('Error in deleteMessage:', error);
+    }
   };
 
 
