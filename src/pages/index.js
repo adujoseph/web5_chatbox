@@ -31,7 +31,7 @@ export default function Home() {
     return await web5.dwn.protocols.query({
       message: {
         filter: {
-          protocol: "https://blackgirlbytes.dev/burn-book-finale",
+          protocol: "https://blackcodematters.hashnode.dev/the-web5-journey-getting-started",
         },
       },
     });
@@ -43,7 +43,7 @@ export default function Home() {
       from: did,
       message: {
         filter: {
-          protocol: "https://blackgirlbytes.dev/burn-book-finale",
+          protocol: "https://blackcodematters.hashnode.dev/the-web5-journey-getting-started",
         },
       },
     });
@@ -68,7 +68,7 @@ export default function Home() {
 
   const defineNewProtocol = () => {
     return {
-      protocol: "https://blackgirlbytes.dev/burn-book-finale",
+      protocol: "https://blackcodematters.hashnode.dev/the-web5-journey-getting-started",
       published: true,
       types: {
         secretMessage: {
@@ -233,7 +233,7 @@ export default function Home() {
         from: myDid,
         message: {
           filter: {
-            protocol: "https://blackgirlbytes.dev/burn-book-finale",
+            protocol: "https://blackcodematters.hashnode.dev/the-web5-journey-getting-started",
             schema: "https://example.com/directMessageSchema",
           },
         },
@@ -266,7 +266,7 @@ export default function Home() {
       const response = await web5.dwn.records.query({
         message: {
           filter: {
-            protocol: "https://blackgirlbytes.dev/burn-book-finale",
+            protocol: "https://blackcodematters.hashnode.dev/the-web5-journey-getting-started",
           },
         },
       });
