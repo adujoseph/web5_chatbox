@@ -36,16 +36,7 @@ npm run dev
 
 ## Level 2: Connect to Web5 and create a DID
 ### 📝 Task
-Locate the line:
-```javascript title="src/pages/index.js"
-console.log(`this log is in initWeb5`);
-```
-and replace it with the following code snippet:
-```javascript title="src/pages/index.js"
-const { web5, did } = await Web5.connect({sync: '5s'});
-setWeb5(web5);
-setMyDid(did);
-```
+
 
 ### 🧩 Breaking it down
 - **Web5.connect()** returns a Web5 instance: It initializes and returns an instance of Web5, allowing you to interact with the Web5 ecosystem.
@@ -63,35 +54,7 @@ console.log('this is where we define our protocol')
 
 And replace it with the following code snippet:
 ```javascript
-    return {
-      protocol: "https://blackgirlbytes.dev/burn-book-finale",
-      published: true,
-      types: {
-        secretMessage: {
-          schema: "https://example.com/secretMessageSchema",
-          dataFormats: ["application/json"],
-        },
-        directMessage: {
-          schema: "https://example.com/directMessageSchema",
-          dataFormats: ["application/json"],
-        },
-      },
-      structure: {
-        secretMessage: {
-          $actions: [
-            { who: "anyone", can: "write" },
-            { who: "author", of: "secretMessage", can: "read" },
-          ],
-        },
-        directMessage: {
-          $actions: [
-            { who: "author", of: "directMessage", can: "read" },
-            { who: "recipient", of: "directMessage", can: "read" },
-            { who: "anyone", can: "write" },
-          ],
-        },
-      },
-    };
+    
 ``` -->
 ### 🧩 Breaking it down
 - **protocolDefinition:** This object defines the protocol, its structure, and it grants permissions outlining who can perform specific actions like reading or writing a ding.
